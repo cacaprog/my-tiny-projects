@@ -1,4 +1,4 @@
-#!/usr/local/bin/env python3
+#!/home/cacaprog/anaconda3/bin/python
 
 import os
 from subprocess import getstatusoutput, getoutput
@@ -40,19 +40,3 @@ def test_input():
           rv, out = getstatusoutput(f'{prg} {option} {val}')
           assert rv == 0
           assert out.strip() == f'Hello, {val}!'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
