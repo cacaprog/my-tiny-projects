@@ -2,70 +2,48 @@
 """
 Author : cacaprog <cacaprog@localhost>
 Date   : 2023-05-20
-Purpose: Rock the Casbah
+Purpose: Howler something cool in uppercase
 """
 
 import argparse
-
+import os
+import sys
 
 # --------------------------------------------------
 def get_args():
     """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
-        description='Rock the Casbah',
+        description='Howler upper-case input',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('positional',
-                        metavar='str',
-                        help='A positional argument')
+    parser.add_argument('text',
+                        metavar='text',
+                        type=str,
+                        help='Input string or file')
 
-    parser.add_argument('-a',
-                        '--arg',
-                        help='A named string argument',
+    parser.add_argument('-o',
+                        '--outfile',
+                        help='Output filename',
                         metavar='str',
                         type=str,
                         default='')
+    
+    args = parser.parse_args()
 
-    parser.add_argument('-i',
-                        '--int',
-                        help='A named integer argument',
-                        metavar='int',
-                        type=int,
-                        default=0)
-
-    parser.add_argument('-f',
-                        '--file',
-                        help='A readable file',
-                        metavar='FILE',
-                        type=argparse.FileType('rt'),
-                        default=None)
-
-    parser.add_argument('-o',
-                        '--on',
-                        help='A boolean flag',
-                        action='store_true')
-
-    return parser.parse_args()
-
+    if os.path.isfile(args.text):
+        args.text = open(args.text).read().rstrip()
+    
+    return args
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
+    """Make a jazz rock here!"""
 
     args = get_args()
-    str_arg = args.arg
-    int_arg = args.int
-    file_arg = args.file
-    flag_arg = args.on
-    pos_arg = args.positional
-
-    print(f'str_arg = "{str_arg}"')
-    print(f'int_arg = "{int_arg}"')
-    print('file_arg = "{}"'.format(file_arg.name if file_arg else ''))
-    print(f'flag_arg = "{flag_arg}"')
-    print(f'positional = "{pos_arg}"')
-
+    out_fh = open(args.outfile, 'wt') if args.outfile else sys.stdout
+    out_fh.write(args.text.upper() + '\n')
+    out_fh.close()
 
 # --------------------------------------------------
 if __name__ == '__main__':
