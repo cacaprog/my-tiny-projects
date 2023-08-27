@@ -1,8 +1,8 @@
 #!/home/cacaprog/anaconda3/bin/python
 """
-Author : administrador <administrador@localhost>
+Author : Cacaprog
 Date   : 2023-08-26
-Purpose: Rock the Casbah
+Purpose: Word count
 """
 
 import argparse
@@ -13,7 +13,7 @@ def get_args():
     """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
-        description='Rock the Casbah',
+        description='Word count',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('positional',
@@ -51,7 +51,7 @@ def get_args():
 
 # --------------------------------------------------
 def main():
-    """Make a jazz noise here"""
+    """Make progrock solo here"""
 
     args = get_args()
     str_arg = args.arg
